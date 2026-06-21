@@ -11,7 +11,7 @@ export function ThemeToggle() {
   useEffect(() => setMounted(true), [])
 
   if (!mounted) {
-    return <div className="h-8 w-16" />
+    return <div className="h-11 w-20" />
   }
 
   const isDark = theme === 'dark'
@@ -19,27 +19,27 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="relative flex h-8 w-16 cursor-pointer items-center rounded-full border border-surface-border bg-surface shadow-inner transition-colors hover:border-accent"
+      className="relative flex h-11 w-20 cursor-pointer items-center rounded-full border border-surface-border bg-surface/40 shadow-sm shadow-black/5 transition-all duration-300 hover:border-brand-gold/30 hover:bg-surface hover:scale-105 active:scale-95"
     >
       <div
-        className={`absolute left-1 flex h-6 w-6 items-center justify-center rounded-full transition-transform duration-300 ease-in-out ${
-          isDark ? 'translate-x-8 bg-brand-gold' : 'translate-x-0 bg-foreground'
+        className={`absolute left-1.5 flex h-7 w-7 items-center justify-center rounded-full transition-transform duration-300 ease-in-out ${
+          isDark ? 'translate-x-10 bg-brand-gold text-zinc-950' : 'translate-x-0 bg-foreground text-background'
         }`}
       >
         {isDark ? (
-          <Moon className="h-3.5 w-3.5 text-background" />
+          <Moon className="h-4 w-4" />
         ) : (
-          <Sun className="h-3.5 w-3.5 text-background" />
+          <Sun className="h-4 w-4" />
         )}
       </div>
 
       <Sun
-        className={`absolute left-1.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-opacity ${
+        className={`absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-opacity duration-300 ${
           isDark ? 'opacity-40' : 'opacity-0'
         }`}
       />
       <Moon
-        className={`absolute right-1.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-opacity ${
+        className={`absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-opacity duration-300 ${
           isDark ? 'opacity-0' : 'opacity-40'
         }`}
       />
