@@ -23,7 +23,7 @@ export function ThemeToggle() {
     >
       <div
         className={`absolute left-1.5 flex h-7 w-7 items-center justify-center rounded-full transition-transform duration-300 ease-in-out ${
-          isDark ? 'translate-x-10 bg-brand-gold text-zinc-950' : 'translate-x-0 bg-foreground text-background'
+          isDark ? 'translate-x-10 bg-brand-gold text-on-accent' : 'translate-x-0 bg-foreground text-background'
         }`}
       >
         {isDark ? (

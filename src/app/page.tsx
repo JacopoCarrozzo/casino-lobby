@@ -1,7 +1,16 @@
+
+
+import { HeroSection } from '@/components/home/HeroSection'
+import { Navbar } from '@/components/layout/Navbar'
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-950 text-white flex items-center justify-center">
-      <h1 className="text-3xl font-bold">Casino Lobby — Coming Soon</h1>
+    <main className="min-h-screen bg-background p-8">
+      <Navbar />
+      <HeroSection/>
+      
     </main>
-  );
+  )
 }
+
+      
