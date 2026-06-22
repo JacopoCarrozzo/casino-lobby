@@ -16,7 +16,7 @@ export function Navbar({ searchValue = '', onSearchChange }: NavbarProps) {
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/85 backdrop-blur-xl transition-all duration-300 shadow-sm shadow-black/5">
+    <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/85 backdrop-blur-xl">
       <div className="w-full flex h-20 items-center justify-between px-6 xl:px-16 gap-8">
         
         <div className="group flex shrink-0 items-center gap-3.5 cursor-pointer">
