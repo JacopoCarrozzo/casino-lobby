@@ -35,6 +35,14 @@
   --font-mono: var(--font-geist-mono);
 }
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-foreground);

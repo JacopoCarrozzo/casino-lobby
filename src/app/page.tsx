@@ -1,16 +1,24 @@
-
-
 import { HeroSection } from '@/components/home/HeroSection'
-import { Navbar } from '@/components/layout/Navbar'
+import { GameLobby } from '@/components/home/GameLobby'
+import { fetchAllGamesServer } from '@/lib/api'
+import type { Game } from '@/types'
 
-export default function Home() {
+export default async function Home() {
+  let games: Game[] = []
+  let error: string | null = null
+
+  try {
+    games = await fetchAllGamesServer()
+  } catch {
+    error = 'Unable to load games. Please try again later.'
+  }
+
   return (
-    <main className="min-h-screen bg-background p-8">
-      <Navbar />
-      <HeroSection/>
-      
+    <main>
+      <HeroSection />
+      <section id="games">
+        <GameLobby initialGames={games} initialError={error} />
+      </section>
     </main>
   )
 }
-
-      

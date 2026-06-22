@@ -13,3 +13,5 @@ export interface Game {
 export interface GameDetails extends Game {
   description: string
 }
+
+export type SortOption = 'title' | 'release_date' | 'publisher'

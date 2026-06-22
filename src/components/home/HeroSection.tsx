@@ -2,38 +2,44 @@ import Image from 'next/image'
 
 export function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-background py-0 px-6 xl:px-16">
-      <div className="grid w-full grid-cols-1 items-center gap-12 pt-0 pb-6 px-8 md:grid-cols-2 md:pt-2 md:pb-20 md:px-16">
-
+    <section className="relative w-full overflow-hidden bg-background">
+      <div className="relative grid w-full grid-cols-1 items-center gap-12 px-8 md:grid-cols-2 md:pt-2 md:pb-0 md:px-16">
+        
+        {/* PARTE SINISTRA: TESTO (Rimane esattamente dov'è) */}
         <div className="flex flex-col items-start text-left max-w-xl">
-          
-          <h1 className="text-4xl font-black uppercase tracking-tight text-foreground md:text-5xl lg:text-6xl leading-[1.05]">
+          <h1 className="text-3xl font-black uppercase tracking-tight text-foreground md:text-4xl lg:text-5xl leading-[1.05]">
             Welcome to the <br />
             <span className="text-brand-gold drop-shadow-[0_0_12px_rgba(212,175,55,0.15)]">
               Casino Lobby
             </span>
           </h1>
 
-          <p className="mt-5 text-[15px] font-medium leading-relaxed text-muted-foreground max-w-md">
+          <p className="mt-3 text-[14px] font-medium leading-relaxed text-muted-foreground max-w-sm">
             Discover the best free games across all genres.
           </p>
 
-          <a href="#games"
-             className="mt-8 inline-flex h-12 items-center rounded-xl bg-brand-gold px-9 text-[15px] font-black uppercase tracking-wider text-on-accent shadow-[0_4px_20px_rgba(212,175,55,0.3)] transition-all duration-300 hover:brightness-110 hover:scale-[1.03] hover:shadow-[0_6px_24px_rgba(212,175,55,0.45)] active:scale-95"
+          <a 
+            href="#games"
+            className="className=mt-6 inline-flex h-10 items-center rounded-lg bg-brand-gold px-7 text-[13px] font-black uppercase tracking-wider text-on-accent shadow-[0_4px_15px_rgba(212,175,55,0.2)] transition-all duration-300 hover:brightness-110 active:scale-95"
           >
             Play Now
           </a>
         </div>
 
-        <div className="relative min-h-[320px] md:min-h-[420px] w-full aspect-video">
-          <Image
-            src="/images/hero.png"
-            alt="Casino lobby hero illustration"
-            fill
-            priority
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain transition-transform duration-700 hover:scale-[1.02]"
-          />
+        {/* PARTE DESTRA: IMMAGINE INGRANDITA */}
+        {/* Il contenitore relativo mantiene la struttura della griglia intatta */}
+        <div className="relative h-[220px] md:h-[320px] w-full">
+          {/* Questo div assoluto è il trucco: si allarga del 150% verso sinistra senza spingere il testo */}
+          <div className="absolute top-[57%] -translate-y-1/2 -right-10 w-[120%] md:w-[150%] h-[120%] md:h-[130%] pointer-events-none">
+            <Image
+              src="/images/hero.png"
+              alt="Casino lobby hero illustration"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 80vw"
+              className="object-contain object-right md:object-center transition-transform duration-700 hover:scale-[1.02]"
+            />
+          </div>
         </div>
 
       </div>
