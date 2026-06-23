@@ -10,10 +10,11 @@ interface GameCardProps {
 }
 
 export function GameCard({ game, isFavorite, onToggleFavorite }: GameCardProps) {
+  const cleanPlatform = game.platform.replace('PC (Windows)', 'PC')
+
   return (
     <article className="group relative flex flex-col rounded-2xl border border-surface-border bg-surface overflow-hidden transition-all duration-300 hover:border-brand-gold/30 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
 
-      {/* Thumbnail */}
       <Link href={`/games/${game.id}`} className="relative block aspect-video w-full overflow-hidden">
         <Image
           src={game.thumbnail}
@@ -28,7 +29,6 @@ export function GameCard({ game, isFavorite, onToggleFavorite }: GameCardProps) 
         />
       </Link>
 
-      {/* Favorite button */}
       <button
         onClick={() => onToggleFavorite(game.id)}
         aria-label={isFavorite ? `Remove ${game.title} from favorites` : `Add ${game.title} to favorites`}
@@ -43,19 +43,16 @@ export function GameCard({ game, isFavorite, onToggleFavorite }: GameCardProps) 
         />
       </button>
 
-      {/* Info */}
-      <div className="flex flex-col gap-1.5 p-4">
+      <div className="flex flex-col gap-1.5 p-4 min-w-0">
         <Link href={`/games/${game.id}`}>
           <h3 className="text-sm font-bold text-foreground line-clamp-1 transition-colors duration-200 hover:text-brand-gold">
             {game.title}
           </h3>
         </Link>
 
-        <div className="flex items-center gap-1.5">
-          <span className="text-xs text-muted-foreground">{game.genre}</span>
-          <span aria-hidden="true" className="text-xs text-muted-foreground/40">•</span>
-          <span className="text-xs text-muted-foreground">{game.platform}</span>
-        </div>
+        <p className="text-xs text-muted-foreground truncate">
+          {game.genre} <span className="text-muted-foreground/40 px-1" aria-hidden="true">•</span> {cleanPlatform}
+        </p>
 
         <span className="text-xs text-muted-foreground/60 truncate">
           {game.publisher}

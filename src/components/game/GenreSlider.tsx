@@ -55,26 +55,27 @@ export function GenreSlider({ genre, games, favorites, onToggleFavorite }: Genre
         </div>
       </div>
 
-      {/* Scrollable row */}
-<div className="relative w-full px-6 xl:px-16">
-  <div
-    ref={scrollRef}
-    className="scrollbar-hide flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory px-6 xl:px-16 py-4"
-  >
-    {games.map((game) => (
-      <div 
-        key={game.id}
-        className="snap-start shrink-0 w-[200px] md:w-[215px]" 
-      >
-        <GameCard
-          game={game}
-          isFavorite={favorites.includes(game.id)}
-          onToggleFavorite={onToggleFavorite}
-        />
+  {/* Scrollable row */}
+      <div className="relative w-full px-6 xl:px-16">
+        <div
+          ref={scrollRef}
+          // Abbiamo tolto px-6 da qui e aggiunto 'w-full justify-start'
+          className="scrollbar-hide flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 w-full justify-start"
+        >
+          {games.map((game) => (
+            <div 
+              key={game.id}
+              className="snap-start shrink-0 w-[200px] md:w-[215px]" 
+            >
+              <GameCard
+                game={game}
+                isFavorite={favorites.includes(game.id)}
+                onToggleFavorite={onToggleFavorite}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
 
     </section>
   )

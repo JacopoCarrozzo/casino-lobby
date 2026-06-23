@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useFavorites } from '@/hooks/useFavorites'
 import { FilterBar } from '@/components/home/FilterBar'
 import { GenreSlider } from '@/components/game/GenreSlider'
@@ -14,8 +14,14 @@ interface GameLobbyProps {
 export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
   const [selectedGenre, setSelectedGenre] = useState('all')
   const [sort, setSort] = useState<SortOption>('title')
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 7
 
   const { favorites, toggleFavorite } = useFavorites()
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [selectedGenre, sort])
 
   const genres = useMemo(
     () => Array.from(new Set(initialGames.map((g) => g.genre))).sort(),
@@ -49,18 +55,35 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
     [filteredGames]
   )
 
-  // Logica per ordinare le categorie: Shooter sempre per primo
-  const genreEntries = useMemo(() => {
+  const allGenreEntries = useMemo(() => {
     return Object.entries(groupedByGenre).sort((a, b) => {
+      const gamesCountA = a[1].length
+      const gamesCountB = b[1].length
+
+      if (gamesCountA !== gamesCountB) {
+        return gamesCountB - gamesCountA
+      }
+
       const genreA = a[0]
       const genreB = b[0]
-
       if (genreA === 'Shooter') return -1
       if (genreB === 'Shooter') return 1
-      
+
       return genreA.localeCompare(genreB)
     })
   }, [groupedByGenre])
+
+  const totalPages = Math.ceil(allGenreEntries.length / itemsPerPage)
+
+  const pagedGenreEntries = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage
+    return allGenreEntries.slice(startIndex, startIndex + itemsPerPage)
+  }, [allGenreEntries, currentPage])
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   if (initialError) {
     return (
@@ -81,22 +104,47 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
         onSortChange={setSort}
       />
 
-      {genreEntries.length === 0 ? (
+      {pagedGenreEntries.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-32 gap-3">
           <p className="text-lg font-semibold text-foreground">No games found</p>
           <p className="text-sm text-muted-foreground">Try adjusting your filters.</p>
         </div>
       ) : (
         <div className="flex flex-col gap-12">
-          {genreEntries.map(([genre, games]) => (
-            <GenreSlider
-              key={genre}
-              genre={genre}
-              games={games}
-              favorites={favorites}
-              onToggleFavorite={toggleFavorite}
-            />
-          ))}
+          <div className="flex flex-col gap-12">
+            {pagedGenreEntries.map(([genre, games]) => (
+              <GenreSlider
+                key={genre}
+                genre={genre}
+                games={games}
+                favorites={favorites}
+                onToggleFavorite={toggleFavorite}
+              />
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-3 pt-6 pb-12">
+              {Array.from({ length: totalPages }, (_, index) => {
+                const pageNumber = index + 1
+                const isActive = pageNumber === currentPage
+
+                return (
+                  <button
+                    key={pageNumber}
+                    onClick={() => handlePageChange(pageNumber)}
+                    className={`min-w-[44px] h-11 px-3 rounded-xl text-sm font-black border transition-all duration-300 active:scale-95 cursor-pointer ${
+                      isActive
+                        ? 'bg-brand-gold border-brand-gold text-on-accent shadow-[0_0_15px_rgba(212,175,55,0.4)]'
+                        : 'bg-transparent border-muted-foreground/20 text-muted-foreground hover:border-brand-gold hover:text-brand-gold hover:scale-105 hover:shadow-[0_0_10px_rgba(212,175,55,0.15)]'
+                    }`}
+                  >
+                    {pageNumber}
+                  </button>
+                )
+              })}
+            </div>
+          )}
         </div>
       )}
     </div>
