@@ -5,6 +5,7 @@ import { useFavorites } from '@/hooks/useFavorites'
 import { FilterBar } from '@/components/home/FilterBar'
 import { GenreSlider } from '@/components/game/GenreSlider'
 import type { Game, SortOption } from '@/types'
+import { useSearch } from '@/context/SearchContext'
 
 interface GameLobbyProps {
   initialGames: Game[]
@@ -12,6 +13,7 @@ interface GameLobbyProps {
 }
 
 export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
+  const { query: searchQuery } = useSearch()
   const [selectedGenre, setSelectedGenre] = useState('all')
   const [sort, setSort] = useState<SortOption>('title')
   const [currentPage, setCurrentPage] = useState(1)
@@ -21,7 +23,7 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
 
   useEffect(() => {
     setCurrentPage(1)
-  }, [selectedGenre, sort])
+  }, [selectedGenre, sort, searchQuery])
 
   const genres = useMemo(
     () => Array.from(new Set(initialGames.map((g) => g.genre))).sort(),
@@ -30,6 +32,11 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
 
   const filteredGames = useMemo(() => {
     let result = [...initialGames]
+
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase()
+      result = result.filter((g) => g.title.toLowerCase().includes(q))
+    }
 
     if (selectedGenre !== 'all') {
       result = result.filter((g) => g.genre === selectedGenre)
@@ -43,7 +50,7 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
     })
 
     return result
-  }, [initialGames, selectedGenre, sort])
+  }, [initialGames, searchQuery, selectedGenre, sort])
 
   const groupedByGenre = useMemo(
     () =>

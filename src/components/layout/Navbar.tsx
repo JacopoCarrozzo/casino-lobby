@@ -1,13 +1,11 @@
 'use client'
 
+import { useSearch } from '@/context/SearchContext'
 import { ThemeToggle } from '@/components/theme/ThemeToggle'
 
-interface NavbarProps {
-  searchValue?: string
-  onSearchChange?: (value: string) => void
-}
+export function Navbar() {
+  const { query, setQuery } = useSearch()
 
-export function Navbar({ searchValue = '', onSearchChange }: NavbarProps) {
   const navLinks = [
     { label: 'Home' },
     { label: 'All Games' },
@@ -18,17 +16,17 @@ export function Navbar({ searchValue = '', onSearchChange }: NavbarProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/85 backdrop-blur-xl">
       <div className="w-full flex h-20 items-center justify-between px-6 xl:px-16 gap-8">
-        
+
         <div className="group flex shrink-0 items-center gap-3.5 cursor-pointer">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 text-brand-gold ring-1 ring-brand-gold/30 transition-all duration-500 group-hover:from-brand-gold/30 group-hover:to-brand-gold/10 group-hover:ring-brand-gold/50 group-hover:scale-105 shadow-[0_4px_12px_rgba(212,175,55,0.08)]">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="1.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 text-brand-gold ring-1 ring-brand-gold/30 transition-all duration-500 group-hover:from-brand-gold/30 group-hover:to-brand-gold/10 group-hover:ring-brand-gold/50 group-hover:scale-105 shadow-[0_4px_12px_rgba(245,158,11,0.08)]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="h-6 w-6 transition-transform duration-700 ease-out group-hover:rotate-[360deg]"
             >
               <path d="M6 3h12l4 6-10 12L2 9z" />
@@ -55,7 +53,7 @@ export function Navbar({ searchValue = '', onSearchChange }: NavbarProps) {
                 className="text-[15px] font-medium tracking-wide relative py-2.5 group/link cursor-pointer"
               >
                 <span className={`transition-all duration-300 ${
-                  isActive ? 'text-brand-gold font-bold drop-shadow-[0_0_8px_rgba(212,175,55,0.2)]' : 'text-muted-foreground group-hover/link:text-foreground'
+                  isActive ? 'text-brand-gold font-bold drop-shadow-[0_0_8px_rgba(245,158,11,0.2)]' : 'text-muted-foreground group-hover/link:text-foreground'
                 }`}>
                   {link.label}
                 </span>
@@ -76,17 +74,21 @@ export function Navbar({ searchValue = '', onSearchChange }: NavbarProps) {
             </div>
             <input
               type="text"
-              value={searchValue}
-              onChange={(e) => onSearchChange?.(e.target.value)}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               placeholder="Search games"
-              className="w-full h-11 rounded-full border border-surface-border bg-surface/40 pl-11 pr-4 text-sm text-foreground placeholder:text-muted-foreground/40 transition-all duration-300 focus:border-brand-gold/40 focus:bg-surface focus:outline-none focus:ring-4 focus:ring-brand-gold/5 shadow-[inner_0_2px_4px_rgba(0,0,0,0.02)]"
+              aria-label="Search games by title"
+              className="w-full h-11 rounded-full border border-surface-border bg-surface/40 pl-11 pr-4 text-sm text-foreground placeholder:text-muted-foreground/40 transition-all duration-300 focus:border-brand-gold/40 focus:bg-surface focus:outline-none focus:ring-4 focus:ring-brand-gold/5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
             />
           </div>
 
           <div className="flex items-center gap-5 border-l border-surface-border pl-6 h-9 shrink-0">
             <ThemeToggle />
 
-            <button className="flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface/40 text-muted-foreground transition-all duration-300 hover:text-brand-gold hover:border-brand-gold/30 hover:bg-surface hover:scale-105 active:scale-95 shadow-md shadow-black/5">
+            <button
+              aria-label="Account"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface/40 text-muted-foreground transition-all duration-300 hover:text-brand-gold hover:border-brand-gold/30 hover:bg-surface hover:scale-105 active:scale-95 shadow-md shadow-black/5 cursor-pointer"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
