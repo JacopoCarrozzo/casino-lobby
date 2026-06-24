@@ -17,7 +17,7 @@ export function useFavorites() {
         setFavorites(parsed.filter((id): id is number => typeof id === 'number'))
       }
     } catch {
-      // Corrupted or invalid data in localStorage — ignore and start fresh
+      // Ignore corrupted localStorage and start with no favorites.
     }
   }, [])
 
