@@ -41,9 +41,9 @@ export function FilterBar({
         aria-label="Sort games"
         className={selectClassName}
       >
-        <option value="title">Sort: Title</option>
-        <option value="release_date">Sort: Release Date</option>
-        <option value="publisher">Sort: Publisher</option>
+        <option value="title">Sort by: Title</option>
+        <option value="release_date">Sort by: Release Date</option>
+        <option value="publisher">Sort by: Publisher</option>
       </select>
     </div>
   )
