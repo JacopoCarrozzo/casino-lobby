@@ -1,16 +1,6 @@
 import type { Game, GameDetails } from '@/types'
 
-export async function fetchAllGames(): Promise<Game[]> {
-  const response = await fetch('/api/games')
-
-  if (!response.ok) {
-    throw new Error('Failed to load games')
-  }
-
-  return response.json()
-}
-
-export async function fetchAllGamesServer(): Promise<Game[]> {
+export async function getAllGames(): Promise<Game[]> {
   const response = await fetch('https://www.freetogame.com/api/games', {
     next: { revalidate: 3600 },
   })
@@ -18,17 +8,7 @@ export async function fetchAllGamesServer(): Promise<Game[]> {
   return response.json()
 }
 
-export async function fetchGameById(id: string): Promise<GameDetails> {
-  const response = await fetch(`/api/games/${id}`)
-
-  if (!response.ok) {
-    throw new Error('Failed to load game details')
-  }
-
-  return response.json()
-}
-
-export async function fetchGameByIdServer(id: string): Promise<GameDetails> {
+export async function getGameById(id: string): Promise<GameDetails> {
   const response = await fetch(`https://www.freetogame.com/api/game?id=${id}`, {
     next: { revalidate: 3600 },
   })

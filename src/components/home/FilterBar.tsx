@@ -16,7 +16,6 @@ export function FilterBar({
   return (
     <div className="flex flex-wrap items-center gap-2 px-6 xl:px-16 py-2">
 
-      {/* Rimpiccioliti ulteriormente: h-8, text-[10px], px-2.5 */}
       <select
         value={selectedGenre}
         onChange={(e) => onGenreChange(e.target.value)}
@@ -28,7 +27,6 @@ export function FilterBar({
         ))}
       </select>
 
-      {/* Sort - h-10 ridotto a h-9, text-sm a text-xs */}
       <select
         value={sort}
         onChange={(e) => onSortChange(e.target.value as SortOption)}

@@ -26,13 +26,9 @@ export function GenreSlider({ genre, games, favorites, onToggleFavorite }: Genre
 
   return (
     <section className="flex flex-col gap-4">
-
-      {/* Header */}
       <div className="flex items-center justify-between px-6 xl:px-16">
         <h2 className="text-lg font-bold text-foreground">{genre}</h2>
-
-        {/* View all + arrows grouped */}
-        <div className="flex items-center gap-2">
+         <div className="flex items-center gap-2">
           <button className="h-9 rounded-full border border-surface-border bg-surface px-4 text-sm font-medium text-muted-foreground transition-all duration-200 hover:border-brand-gold/30 hover:text-foreground">
             View all
           </button>
@@ -55,11 +51,9 @@ export function GenreSlider({ genre, games, favorites, onToggleFavorite }: Genre
         </div>
       </div>
 
-  {/* Scrollable row */}
       <div className="relative w-full px-6 xl:px-16">
         <div
           ref={scrollRef}
-          // Abbiamo tolto px-6 da qui e aggiunto 'w-full justify-start'
           className="scrollbar-hide flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 w-full justify-start"
         >
           {games.map((game) => (

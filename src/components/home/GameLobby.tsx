@@ -56,19 +56,10 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
   )
 
   const allGenreEntries = useMemo(() => {
-    return Object.entries(groupedByGenre).sort((a, b) => {
-      const gamesCountA = a[1].length
-      const gamesCountB = b[1].length
-
-      if (gamesCountA !== gamesCountB) {
-        return gamesCountB - gamesCountA
+    return Object.entries(groupedByGenre).sort(([genreA, gamesA], [genreB, gamesB]) => {
+      if (gamesA.length !== gamesB.length) {
+        return gamesB.length - gamesA.length
       }
-
-      const genreA = a[0]
-      const genreB = b[0]
-      if (genreA === 'Shooter') return -1
-      if (genreB === 'Shooter') return 1
-
       return genreA.localeCompare(genreB)
     })
   }, [groupedByGenre])
@@ -135,8 +126,8 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
                     onClick={() => handlePageChange(pageNumber)}
                     className={`min-w-[44px] h-11 px-3 rounded-xl text-sm font-black border transition-all duration-300 active:scale-95 cursor-pointer ${
                       isActive
-                        ? 'bg-brand-gold border-brand-gold text-on-accent shadow-[0_0_15px_rgba(212,175,55,0.4)]'
-                        : 'bg-transparent border-muted-foreground/20 text-muted-foreground hover:border-brand-gold hover:text-brand-gold hover:scale-105 hover:shadow-[0_0_10px_rgba(212,175,55,0.15)]'
+                        ? 'bg-brand-gold border-brand-gold text-accent-foreground shadow-[0_0_15px_rgba(245,158,11,0.4)]'
+                        : 'bg-transparent border-muted-foreground/20 text-muted-foreground hover:border-brand-gold hover:text-brand-gold hover:scale-105 hover:shadow-[0_0_10px_rgba(245,158,11,0.15)]'
                     }`}
                   >
                     {pageNumber}

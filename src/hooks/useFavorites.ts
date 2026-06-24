@@ -8,9 +8,16 @@ export function useFavorites() {
   const [favorites, setFavorites] = useState<number[]>([])
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored) {
-      setFavorites(JSON.parse(stored))
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      if (!stored) return
+
+      const parsed = JSON.parse(stored)
+      if (Array.isArray(parsed)) {
+        setFavorites(parsed.filter((id): id is number => typeof id === 'number'))
+      }
+    } catch {
+      // Corrupted or invalid data in localStorage — ignore and start fresh
     }
   }, [])
 
@@ -25,9 +32,5 @@ export function useFavorites() {
     })
   }
 
-  function isFavorite(id: number): boolean {
-    return favorites.includes(id)
-  }
-
-  return { favorites, isFavorite, toggleFavorite }
+  return { favorites, toggleFavorite }
 }

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ExternalLink, Calendar, Monitor, Building2 } from 'lucide-react'
 import type { Metadata } from 'next'
-import { fetchGameByIdServer } from '@/lib/api'
+import { getGameById } from '@/lib/api'
 
 interface Props {
   params: Promise<{ id: string }>
@@ -12,7 +12,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
   try {
-    const game = await fetchGameByIdServer(id)
+    const game = await getGameById(id)
     return {
       title: `${game.title} — Casino Lobby`,
       description: game.description,
@@ -27,7 +27,7 @@ export default async function GameDetailPage({ params }: Props) {
 
   let game
   try {
-    game = await fetchGameByIdServer(id)
+    game = await getGameById(id)
   } catch {
     notFound()
   }
@@ -36,7 +36,6 @@ export default async function GameDetailPage({ params }: Props) {
     <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-5xl px-6 py-10 xl:px-8">
 
-        {/* Back */}
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground mb-8"
@@ -45,7 +44,6 @@ export default async function GameDetailPage({ params }: Props) {
           Back to Lobby
         </Link>
 
-        {/* Hero image */}
         <div className="relative w-full aspect-video overflow-hidden rounded-2xl border border-surface-border mb-8">
           <Image
             src={game.thumbnail}
@@ -57,7 +55,6 @@ export default async function GameDetailPage({ params }: Props) {
           />
         </div>
 
-        {/* Title + actions */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-8">
           <div className="flex flex-col gap-1">
             <span className="text-xs font-semibold uppercase tracking-widest text-brand-gold">
@@ -68,12 +65,11 @@ export default async function GameDetailPage({ params }: Props) {
             </h1>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
-            
-            <a  href={game.game_url}
+          <div className="flex items-center gap-3 shrink-0"> 
+            <a href={game.game_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 h-11 rounded-xl bg-brand-gold px-5 text-sm font-bold uppercase tracking-wide text-on-accent shadow-[0_4px_20px_rgba(245,158,11,0.25)] transition-all duration-200 hover:brightness-110 hover:scale-[1.02] active:scale-95"
+              className="inline-flex items-center gap-2 h-11 rounded-xl bg-brand-gold px-5 text-sm font-bold uppercase tracking-wide text-accent-foreground shadow-[0_4px_20px_rgba(245,158,11,0.25)] transition-all duration-200 hover:brightness-110 hover:scale-[1.02] active:scale-95"
             >
               Play Now
               <ExternalLink className="h-4 w-4" />
@@ -81,7 +77,6 @@ export default async function GameDetailPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Meta info */}
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 mb-8">
           {[
             { icon: Monitor, label: 'Platform', value: game.platform },
@@ -106,7 +101,6 @@ export default async function GameDetailPage({ params }: Props) {
           ))}
         </div>
 
-        {/* Description */}
         <div className="rounded-2xl border border-surface-border bg-surface p-6">
           <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-3">
             About
