@@ -17,7 +17,8 @@ export default function NotFound() {
         Page Not Found
       </h1>
       <p className="mb-8 max-w-md text-sm text-muted-foreground leading-relaxed">
-        The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+        The page you are looking for might have been removed, had its name
+        changed, or is temporarily unavailable.
       </p>
 
       <div className="flex flex-col sm:flex-row items-center gap-4 z-10">

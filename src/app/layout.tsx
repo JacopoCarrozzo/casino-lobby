@@ -1,29 +1,30 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import { Navbar } from "@/components/layout/Navbar";
-import { SearchProvider } from "@/context/SearchContext";
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import './globals.css'
+import { ThemeProvider } from '@/components/theme/ThemeProvider'
+import { Navbar } from '@/components/layout/Navbar'
+import { SearchProvider } from '@/context/SearchContext'
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
-  title: "Casino Lobby — Play Free Online Games",
-  description: "Discover hundreds of free-to-play casino games, slot machines, and card games. No registration required!",
-};
+  title: 'Casino Lobby — Play Free Online Games',
+  description:
+    'Discover hundreds of free-to-play casino games, slot machines, and card games. No registration required!',
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html
@@ -33,12 +34,12 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider>
-         <SearchProvider>
-          <Navbar/>
-          {children}
-         </SearchProvider> 
+          <SearchProvider>
+            <Navbar />
+            {children}
+          </SearchProvider>
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

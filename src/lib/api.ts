@@ -5,6 +5,7 @@ export async function getAllGames(): Promise<Game[]> {
     next: { revalidate: 3600 },
   })
   if (!response.ok) throw new Error('Failed to load games')
+
   return response.json()
 }
 

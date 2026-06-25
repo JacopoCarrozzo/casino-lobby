@@ -4,7 +4,7 @@ export function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-background">
       <div className="relative grid w-full grid-cols-1 items-center gap-12 px-8 md:grid-cols-2 md:pt-2 md:pb-0 md:px-16">
-         <div className="flex flex-col items-start text-left max-w-xl">
+        <div className="flex flex-col items-start text-left max-w-xl">
           <h1 className="text-3xl font-black uppercase tracking-tight text-foreground md:text-4xl lg:text-5xl leading-[1.05]">
             Welcome to the <br />
             <span className="text-brand-gold drop-shadow-[0_0_12px_rgba(212,175,55,0.15)]">
@@ -16,7 +16,7 @@ export function HeroSection() {
             Discover the best free games across all genres.
           </p>
 
-          <a 
+          <a
             href="#games"
             className="mt-6 inline-flex h-10 items-center rounded-lg bg-brand-gold px-7 text-[13px] font-black uppercase tracking-wider text-accent-foreground shadow-[0_4px_15px_rgba(212,175,55,0.2)] transition-all duration-300 hover:brightness-110 active:scale-95"
           >
@@ -36,7 +36,6 @@ export function HeroSection() {
             />
           </div>
         </div>
-
       </div>
     </section>
   )

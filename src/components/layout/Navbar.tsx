@@ -16,7 +16,6 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/85 backdrop-blur-xl">
       <div className="w-full flex h-20 items-center justify-between px-6 xl:px-16 gap-8">
-
         <div className="group flex shrink-0 items-center gap-3.5 cursor-pointer">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 text-brand-gold ring-1 ring-brand-gold/30 transition-all duration-500 group-hover:from-brand-gold/30 group-hover:to-brand-gold/10 group-hover:ring-brand-gold/50 group-hover:scale-105 shadow-[0_4px_12px_rgba(245,158,11,0.08)]">
             <svg
@@ -52,14 +51,22 @@ export function Navbar() {
                 key={link.label}
                 className="text-[15px] font-medium tracking-wide relative py-2.5 group/link cursor-pointer"
               >
-                <span className={`transition-all duration-300 ${
-                  isActive ? 'text-brand-gold font-bold drop-shadow-[0_0_8px_rgba(245,158,11,0.2)]' : 'text-muted-foreground group-hover/link:text-foreground'
-                }`}>
+                <span
+                  className={`transition-all duration-300 ${
+                    isActive
+                      ? 'text-brand-gold font-bold drop-shadow-[0_0_8px_rgba(245,158,11,0.2)]'
+                      : 'text-muted-foreground group-hover/link:text-foreground'
+                  }`}
+                >
                   {link.label}
                 </span>
-                <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-brand-gold rounded-full transition-all duration-300 ease-out ${
-                  isActive ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover/link:w-2/3 group-hover/link:opacity-40'
-                }`} />
+                <div
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-brand-gold rounded-full transition-all duration-300 ease-out ${
+                    isActive
+                      ? 'w-full opacity-100'
+                      : 'w-0 opacity-0 group-hover/link:w-2/3 group-hover/link:opacity-40'
+                  }`}
+                />
               </div>
             )
           })}
@@ -68,8 +75,19 @@ export function Navbar() {
         <div className="flex items-center gap-6 flex-1 justify-end max-w-3xl">
           <div className="relative w-full max-w-sm hidden sm:block group/search">
             <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/search:text-brand-gold transition-colors duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.604 10.604z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-4 w-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.604 10.604z"
+                />
               </svg>
             </div>
             <input
@@ -106,7 +124,6 @@ export function Navbar() {
               </svg>
             </button>
           </div>
-
         </div>
       </div>
     </header>

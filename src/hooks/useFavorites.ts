@@ -14,7 +14,9 @@ export function useFavorites() {
 
       const parsed = JSON.parse(stored)
       if (Array.isArray(parsed)) {
-        setFavorites(parsed.filter((id): id is number => typeof id === 'number'))
+        setFavorites(
+          parsed.filter((id): id is number => typeof id === 'number'),
+        )
       }
     } catch {
       // Ignore corrupted localStorage and start with no favorites.

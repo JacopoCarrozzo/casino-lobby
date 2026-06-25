@@ -1,7 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, ExternalLink, Calendar, Monitor, Building2 } from 'lucide-react'
+import {
+  ArrowLeft,
+  ExternalLink,
+  Calendar,
+  Monitor,
+  Building2,
+} from 'lucide-react'
 import type { Metadata } from 'next'
 import { getGameById } from '@/lib/api'
 
@@ -35,7 +41,6 @@ export default async function GameDetailPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-5xl px-6 py-10 xl:px-8">
-
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground mb-8"
@@ -65,8 +70,9 @@ export default async function GameDetailPage({ params }: Props) {
             </h1>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0"> 
-            <a href={game.game_url}
+          <div className="flex items-center gap-3 shrink-0">
+            <a
+              href={game.game_url}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 h-11 rounded-xl bg-brand-gold px-5 text-sm font-bold uppercase tracking-wide text-accent-foreground shadow-[0_4px_20px_rgba(245,158,11,0.25)] transition-all duration-200 hover:brightness-110 hover:scale-[1.02] active:scale-95"
@@ -109,7 +115,6 @@ export default async function GameDetailPage({ params }: Props) {
             {game.description}
           </p>
         </div>
-
       </div>
     </main>
   )

@@ -6,6 +6,7 @@ import { FilterBar } from '@/components/home/FilterBar'
 import { GenreSlider } from '@/components/game/GenreSlider'
 import type { Game, SortOption } from '@/types'
 import { useSearch } from '@/context/SearchContext'
+import { Gamepad2 } from 'lucide-react'
 
 interface GameLobbyProps {
   initialGames: Game[]
@@ -27,7 +28,7 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
 
   const genres = useMemo(
     () => Array.from(new Set(initialGames.map((g) => g.genre))).sort(),
-    [initialGames]
+    [initialGames],
   )
 
   const filteredGames = useMemo(() => {
@@ -44,7 +45,11 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
 
     result.sort((a, b) => {
       if (sort === 'title') return a.title.localeCompare(b.title)
-      if (sort === 'release_date') return new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
+      if (sort === 'release_date')
+        return (
+          new Date(b.release_date).getTime() -
+          new Date(a.release_date).getTime()
+        )
       if (sort === 'publisher') return a.publisher.localeCompare(b.publisher)
       return 0
     })
@@ -59,16 +64,18 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
         acc[game.genre].push(game)
         return acc
       }, {}),
-    [filteredGames]
+    [filteredGames],
   )
 
   const allGenreEntries = useMemo(() => {
-    return Object.entries(groupedByGenre).sort(([genreA, gamesA], [genreB, gamesB]) => {
-      if (gamesA.length !== gamesB.length) {
-        return gamesB.length - gamesA.length
-      }
-      return genreA.localeCompare(genreB)
-    })
+    return Object.entries(groupedByGenre).sort(
+      ([genreA, gamesA], [genreB, gamesB]) => {
+        if (gamesA.length !== gamesB.length) {
+          return gamesB.length - gamesA.length
+        }
+        return genreA.localeCompare(genreB)
+      },
+    )
   }, [groupedByGenre])
 
   const totalPages = Math.ceil(allGenreEntries.length / itemsPerPage)
@@ -86,7 +93,9 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
   if (initialError) {
     return (
       <div className="flex flex-col items-center justify-center py-32 gap-3">
-        <p className="text-lg font-semibold text-foreground">Something went wrong</p>
+        <p className="text-lg font-semibold text-foreground">
+          Something went wrong
+        </p>
         <p className="text-sm text-muted-foreground">{initialError}</p>
       </div>
     )
@@ -103,9 +112,18 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
       />
 
       {pagedGenreEntries.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-32 gap-3">
-          <p className="text-lg font-semibold text-foreground">No games found</p>
-          <p className="text-sm text-muted-foreground">Try adjusting your filters.</p>
+        <div className="flex flex-col items-center justify-center py-32 gap-4">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-surface-border bg-surface">
+            <Gamepad2 className="h-8 w-8 text-muted-foreground/50" />
+          </div>
+          <div className="flex flex-col items-center gap-1.5">
+            <p className="text-lg font-semibold text-foreground">
+              No games found
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Try adjusting your search or filters.
+            </p>
+          </div>
         </div>
       ) : (
         <div className="flex flex-col gap-12">

@@ -11,12 +11,15 @@ interface GameCardProps {
   onToggleFavorite: (id: number) => void
 }
 
-export function GameCard({ game, isFavorite, onToggleFavorite }: GameCardProps) {
+export function GameCard({
+  game,
+  isFavorite,
+  onToggleFavorite,
+}: GameCardProps) {
   const cleanPlatform = game.platform.replace('PC (Windows)', 'PC')
 
   return (
     <article className="group relative flex flex-col rounded-2xl border border-surface-border bg-surface overflow-hidden transition-all duration-300 hover:border-brand-gold/30 hover:shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
-
       <div className="relative block aspect-video w-full overflow-hidden">
         <Image
           src={game.thumbnail}
@@ -33,7 +36,11 @@ export function GameCard({ game, isFavorite, onToggleFavorite }: GameCardProps) 
 
       <button
         onClick={() => onToggleFavorite(game.id)}
-        aria-label={isFavorite ? `Remove ${game.title} from favorites` : `Add ${game.title} to favorites`}
+        aria-label={
+          isFavorite
+            ? `Remove ${game.title} from favorites`
+            : `Add ${game.title} to favorites`
+        }
         className="absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
       >
         <Heart
@@ -47,20 +54,26 @@ export function GameCard({ game, isFavorite, onToggleFavorite }: GameCardProps) 
 
       <div className="flex flex-col gap-1.5 p-4 min-w-0">
         <h3 className="text-sm font-bold text-foreground line-clamp-1 transition-colors duration-200 group-hover:text-brand-gold">
-          <Link href={`/games/${game.id}`} className="after:absolute after:inset-0">
+          <Link
+            href={`/games/${game.id}`}
+            className="after:absolute after:inset-0"
+          >
             {game.title}
           </Link>
         </h3>
 
         <p className="text-xs text-muted-foreground truncate">
-          {game.genre} <span className="text-muted-foreground/40 px-1" aria-hidden="true">•</span> {cleanPlatform}
+          {game.genre}{' '}
+          <span className="text-muted-foreground/40 px-1" aria-hidden="true">
+            •
+          </span>{' '}
+          {cleanPlatform}
         </p>
 
         <span className="text-xs text-muted-foreground/60 truncate">
           {game.publisher}
         </span>
       </div>
-
     </article>
   )
 }
