@@ -3,7 +3,7 @@ import Image from 'next/image'
 export function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-background">
-      <div className="relative grid w-full grid-cols-1 items-center gap-12 px-8 md:grid-cols-2 md:pt-2 md:pb-0 md:px-16">
+      <div className="relative grid w-full grid-cols-1 items-center gap-12 px-8 pt-8 md:grid-cols-2 md:pt-2 md:pb-0 md:px-16">
         <div className="flex flex-col items-start text-left max-w-xl">
           <h1 className="text-3xl font-black uppercase tracking-tight text-foreground md:text-4xl lg:text-5xl leading-[1.05]">
             Welcome to the <br />
