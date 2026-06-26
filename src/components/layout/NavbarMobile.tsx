@@ -20,8 +20,8 @@ export function NavbarMobile() {
   }
 
   return (
-    <>
-      <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-surface-border bg-background/85 px-4 backdrop-blur-xl">
+    <header className="sticky top-0 z-30 flex w-full flex-col border-b border-surface-border bg-background/85 backdrop-blur-xl">
+      <div className="relative flex h-16 items-center justify-between px-4">
         <button
           onClick={() => setIsOpen(true)}
           aria-label="Open menu"
@@ -30,7 +30,7 @@ export function NavbarMobile() {
           <Menu className="h-5 w-5" />
         </button>
 
-        <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-1.5">
+        <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5">
           <span className="text-sm font-black uppercase tracking-wide text-foreground">
             Casino
           </span>
@@ -42,10 +42,11 @@ export function NavbarMobile() {
         <div className="flex items-center gap-1">
           <button
             ref={searchButtonRef}
-            onClick={() => setIsSearchOpen(true)}
+            onClick={() => setIsSearchOpen((v) => !v)}
             aria-label="Search games"
             aria-haspopup="dialog"
             aria-expanded={isSearchOpen}
+            aria-controls="mobile-search"
             className="flex h-9 w-9 items-center justify-center rounded-xl text-foreground transition-colors hover:text-brand-gold"
           >
             <Search className="h-5 w-5" />
@@ -72,54 +73,54 @@ export function NavbarMobile() {
             </svg>
           </Link>
         </div>
-
-        <MobileDrawer isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          <div className="flex items-center justify-between border-b border-surface-border p-4">
-            <span className="text-sm font-black uppercase tracking-wide text-foreground">
-              Menu
-            </span>
-            <button
-              onClick={() => setIsOpen(false)}
-              aria-label="Close menu"
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-brand-gold"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          </div>
-
-          <nav className="flex flex-col p-2">
-            {navLinks.map((label, index) => (
-              <button
-                key={label}
-                onClick={() => setIsOpen(false)}
-                className={`rounded-lg px-4 py-3 text-left text-[15px] font-medium transition-colors ${
-                  index === 0
-                    ? 'font-bold text-brand-gold'
-                    : 'text-muted-foreground hover:bg-background hover:text-foreground'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </nav>
-
-          <div className="flex-1" />
-
-          <div className="flex items-center justify-between border-t border-surface-border p-4">
-            <button
-              aria-label="Account"
-              className="flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-brand-gold"
-            >
-              <User className="h-5 w-5" />
-              <span>Account</span>
-            </button>
-
-            <ThemeToggle />
-          </div>
-        </MobileDrawer>
-      </header>
+      </div>
 
       <SearchOverlay isOpen={isSearchOpen} onClose={closeSearch} />
-    </>
+
+      <MobileDrawer isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <div className="flex items-center justify-between border-b border-surface-border p-4">
+          <span className="text-sm font-black uppercase tracking-wide text-foreground">
+            Menu
+          </span>
+          <button
+            onClick={() => setIsOpen(false)}
+            aria-label="Close menu"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-brand-gold"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <nav className="flex flex-col p-2">
+          {navLinks.map((label, index) => (
+            <button
+              key={label}
+              onClick={() => setIsOpen(false)}
+              className={`rounded-lg px-4 py-3 text-left text-[15px] font-medium transition-colors ${
+                index === 0
+                  ? 'font-bold text-brand-gold'
+                  : 'text-muted-foreground hover:bg-background hover:text-foreground'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+
+        <div className="flex-1" />
+
+        <div className="flex items-center justify-between border-t border-surface-border p-4">
+          <button
+            aria-label="Account"
+            className="flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-brand-gold"
+          >
+            <User className="h-5 w-5" />
+            <span>Account</span>
+          </button>
+
+          <ThemeToggle />
+        </div>
+      </MobileDrawer>
+    </header>
   )
 }
