@@ -59,12 +59,12 @@ export function GenreSlider({
       <div className="relative w-full px-6 xl:px-16">
         <div
           ref={scrollRef}
-          className="scrollbar-hide flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 w-full justify-start"
+          className="scrollbar-hide flex gap-4 sm:gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 w-full justify-start"
         >
           {games.map((game) => (
             <div
               key={game.id}
-              className="snap-start shrink-0 w-[200px] md:w-[215px]"
+              className="snap-start shrink-0 w-[170px] sm:w-[200px] md:w-[215px]"
             >
               <GameCard
                 game={game}
