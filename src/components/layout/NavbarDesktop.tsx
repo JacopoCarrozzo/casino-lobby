@@ -2,10 +2,13 @@
 
 import { useSearch } from '@/context/SearchContext'
 import { ThemeToggle } from '@/components/theme/ThemeToggle'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 export function NavbarDesktop() {
   const { query, setQuery } = useSearch()
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   const navLinks = [
     { label: 'Home' },
@@ -79,32 +82,34 @@ export function NavbarDesktop() {
         </nav>
 
         <div className="flex items-center gap-6 flex-1 justify-end max-w-3xl">
-          <div className="relative w-full max-w-sm hidden sm:block group/search">
-            <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/search:text-brand-gold transition-colors duration-300">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="h-4 w-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.604 10.604z"
-                />
-              </svg>
+          {isHome && (
+            <div className="relative w-full max-w-sm hidden sm:block group/search">
+              <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within/search:text-brand-gold transition-colors duration-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="h-4 w-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.604 10.604z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search games"
+                aria-label="Search games by title"
+                className="w-full h-11 rounded-full border border-surface-border bg-surface/40 pl-11 pr-4 text-sm text-foreground placeholder:text-muted-foreground/40 transition-all duration-300 focus:border-brand-gold/40 focus:bg-surface focus:outline-none focus:ring-4 focus:ring-brand-gold/5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+              />
             </div>
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search games"
-              aria-label="Search games by title"
-              className="w-full h-11 rounded-full border border-surface-border bg-surface/40 pl-11 pr-4 text-sm text-foreground placeholder:text-muted-foreground/40 transition-all duration-300 focus:border-brand-gold/40 focus:bg-surface focus:outline-none focus:ring-4 focus:ring-brand-gold/5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
-            />
-          </div>
+          )}
 
           <div className="flex items-center gap-5 border-l border-surface-border pl-6 h-9 shrink-0">
             <ThemeToggle />

@@ -17,35 +17,34 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
-  try {
-    const game = await getGameById(id)
-    return {
-      title: `${game.title} — Casino Lobby`,
-      description: game.description,
-    }
-  } catch {
+  const game = await getGameById(id)
+
+  if (!game) {
     return { title: 'Game Not Found — Casino Lobby' }
+  }
+
+  return {
+    title: `${game.title} — Casino Lobby`,
+    description: game.description,
   }
 }
 
 export default async function GameDetailPage({ params }: Props) {
   const { id } = await params
+  const game = await getGameById(id)
 
-  let game
-  try {
-    game = await getGameById(id)
-  } catch {
-    notFound()
-  }
+  if (!game) notFound()
 
   return (
     <main className="min-h-screen bg-background">
       <div className="mx-auto max-w-5xl px-6 py-10 xl:px-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground mb-8"
+          className="group mb-8 inline-flex items-center gap-3 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface transition-all duration-200 group-hover:border-muted-foreground/40 group-active:scale-95">
+            <ArrowLeft className="h-5 w-5" />
+          </span>
           Back to Lobby
         </Link>
 

@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Menu, X, User, Search } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme/ThemeToggle'
 import { MobileDrawer } from '@/components/layout/MobileDrawer'
@@ -13,6 +14,13 @@ export function NavbarMobile() {
   const [isOpen, setIsOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const searchButtonRef = useRef<HTMLButtonElement>(null)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+
+  useEffect(() => {
+    setIsSearchOpen(false)
+    setIsOpen(false)
+  }, [pathname])
 
   function closeSearch() {
     setIsSearchOpen(false)
@@ -40,17 +48,19 @@ export function NavbarMobile() {
         </div>
 
         <div className="flex items-center gap-1">
-          <button
-            ref={searchButtonRef}
-            onClick={() => setIsSearchOpen((v) => !v)}
-            aria-label="Search games"
-            aria-haspopup="dialog"
-            aria-expanded={isSearchOpen}
-            aria-controls="mobile-search"
-            className="flex h-9 w-9 items-center justify-center rounded-xl text-foreground transition-colors hover:text-brand-gold"
-          >
-            <Search className="h-5 w-5" />
-          </button>
+          {isHome && (
+            <button
+              ref={searchButtonRef}
+              onClick={() => setIsSearchOpen((v) => !v)}
+              aria-label="Search games"
+              aria-haspopup="dialog"
+              aria-expanded={isSearchOpen}
+              aria-controls="mobile-search"
+              className="flex h-9 w-9 items-center justify-center rounded-xl text-foreground transition-colors hover:text-brand-gold"
+            >
+              <Search className="h-5 w-5" />
+            </button>
+          )}
 
           <Link
             href="/"

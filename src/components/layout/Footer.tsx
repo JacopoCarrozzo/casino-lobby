@@ -19,7 +19,7 @@ export function Footer() {
   return (
     <footer
       aria-label="Site footer"
-      className="mt-auto w-full border-t border-surface-border bg-surface/30"
+      className="mt-16 w-full border-t border-surface-border bg-surface/30"
     >
       <div className="mx-auto w-full px-6 py-12 xl:px-16">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">

@@ -9,10 +9,11 @@ export async function getAllGames(): Promise<Game[]> {
   return response.json()
 }
 
-export async function getGameById(id: string): Promise<GameDetails> {
+export async function getGameById(id: string): Promise<GameDetails | null> {
   const response = await fetch(`https://www.freetogame.com/api/game?id=${id}`, {
     next: { revalidate: 3600 },
   })
+  if (response.status === 404) return null
   if (!response.ok) throw new Error('Failed to load game')
   return response.json()
 }

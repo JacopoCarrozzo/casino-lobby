@@ -1,6 +1,13 @@
 'use client'
 
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from 'react'
+import { usePathname } from 'next/navigation'
 
 interface SearchContextValue {
   query: string
@@ -11,6 +18,11 @@ const SearchContext = createContext<SearchContextValue | null>(null)
 
 export function SearchProvider({ children }: { children: ReactNode }) {
   const [query, setQuery] = useState('')
+  const pathname = usePathname()
+
+  useEffect(() => {
+    setQuery('')
+  }, [pathname])
 
   return (
     <SearchContext.Provider value={{ query, setQuery }}>
