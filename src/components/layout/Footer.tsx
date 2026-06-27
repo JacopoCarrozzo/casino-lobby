@@ -29,7 +29,7 @@ export function Footer() {
               aria-label="Go to home"
               className="group flex w-fit items-center gap-3"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 text-brand-gold ring-1 ring-brand-gold/30 transition-all duration-500 group-hover:ring-brand-gold/50">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 text-brand-gold ring-1 ring-brand-gold/30 group-hover:ring-brand-gold/50">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -38,6 +38,7 @@ export function Footer() {
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  aria-hidden="true"
                   className="h-5 w-5"
                 >
                   <path d="M6 3h12l4 6-10 12L2 9z" />
@@ -46,7 +47,7 @@ export function Footer() {
                 </svg>
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-base font-black uppercase tracking-wide text-foreground transition-colors duration-300 group-hover:text-brand-gold">
+                <span className="text-base font-black uppercase tracking-wide text-foreground group-hover:text-brand-gold">
                   Casino
                 </span>
                 <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold/90">
@@ -75,7 +76,7 @@ export function Footer() {
                     <li key={label}>
                       <Link
                         href="#"
-                        className="text-sm text-muted-foreground transition-colors duration-200 hover:text-brand-gold"
+                        className="text-sm text-muted-foreground hover:text-brand-gold"
                       >
                         {label}
                       </Link>
@@ -95,19 +96,19 @@ export function Footer() {
           <div className="flex items-center gap-5">
             <Link
               href="#"
-              className="text-xs text-muted-foreground/70 transition-colors duration-200 hover:text-brand-gold"
+              className="text-xs text-muted-foreground/70 hover:text-brand-gold"
             >
               Terms
             </Link>
             <Link
               href="#"
-              className="text-xs text-muted-foreground/70 transition-colors duration-200 hover:text-brand-gold"
+              className="text-xs text-muted-foreground/70 hover:text-brand-gold"
             >
               Privacy
             </Link>
             <Link
               href="#"
-              className="text-xs text-muted-foreground/70 transition-colors duration-200 hover:text-brand-gold"
+              className="text-xs text-muted-foreground/70 hover:text-brand-gold"
             >
               Cookies
             </Link>

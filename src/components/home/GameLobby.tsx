@@ -127,17 +127,15 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
         </div>
       ) : (
         <div className="flex flex-col gap-12">
-          <div className="flex flex-col gap-12">
-            {pagedGenreEntries.map(([genre, games]) => (
-              <GenreSlider
-                key={genre}
-                genre={genre}
-                games={games}
-                favorites={favorites}
-                onToggleFavorite={toggleFavorite}
-              />
-            ))}
-          </div>
+          {pagedGenreEntries.map(([genre, games]) => (
+            <GenreSlider
+              key={genre}
+              genre={genre}
+              games={games}
+              favorites={favorites}
+              onToggleFavorite={toggleFavorite}
+            />
+          ))}
 
           {totalPages > 1 && (
             <div className="flex items-center justify-center gap-3 pt-6 pb-12">
@@ -148,8 +146,9 @@ export function GameLobby({ initialGames, initialError }: GameLobbyProps) {
                 return (
                   <button
                     key={pageNumber}
+                    aria-current={isActive ? 'page' : undefined}
                     onClick={() => handlePageChange(pageNumber)}
-                    className={`min-w-[44px] h-11 px-3 rounded-xl text-sm font-black border transition-all duration-300 active:scale-95 cursor-pointer ${
+                    className={`min-w-[44px] h-11 px-3 rounded-xl text-sm font-black border active:scale-95 cursor-pointer ${
                       isActive
                         ? 'bg-brand-gold border-brand-gold text-accent-foreground shadow-[0_0_15px_rgba(245,158,11,0.4)]'
                         : 'bg-transparent border-muted-foreground/20 text-muted-foreground hover:border-brand-gold hover:text-brand-gold hover:scale-105 hover:shadow-[0_0_10px_rgba(245,158,11,0.15)]'

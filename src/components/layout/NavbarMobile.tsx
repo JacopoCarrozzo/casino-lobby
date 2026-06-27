@@ -53,10 +53,9 @@ export function NavbarMobile() {
               ref={searchButtonRef}
               onClick={() => setIsSearchOpen((v) => !v)}
               aria-label="Search games"
-              aria-haspopup="dialog"
               aria-expanded={isSearchOpen}
               aria-controls="mobile-search"
-              className="flex h-9 w-9 items-center justify-center rounded-xl text-foreground transition-colors hover:text-brand-gold"
+              className="flex h-9 w-9 items-center justify-center rounded-xl text-foreground hover:text-brand-gold"
             >
               <Search className="h-5 w-5" />
             </button>
@@ -65,7 +64,7 @@ export function NavbarMobile() {
           <Link
             href="/"
             aria-label="Go to home"
-            className="flex h-9 w-9 items-center justify-center text-brand-gold transition-colors hover:text-brand-gold/80"
+            className="flex h-9 w-9 items-center justify-center text-brand-gold hover:text-brand-gold/80"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -75,6 +74,7 @@ export function NavbarMobile() {
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
+              aria-hidden="true"
               className="h-5 w-5"
             >
               <path d="M6 3h12l4 6-10 12L2 9z" />
@@ -89,7 +89,10 @@ export function NavbarMobile() {
 
       <MobileDrawer isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <div className="flex items-center justify-between border-b border-surface-border p-4">
-          <span className="text-sm font-black uppercase tracking-wide text-foreground">
+          <span
+            id="drawer-title"
+            className="text-sm font-black uppercase tracking-wide text-foreground"
+          >
             Menu
           </span>
           <button

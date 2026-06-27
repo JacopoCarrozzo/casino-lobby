@@ -9,9 +9,12 @@ export function GenreSliderSkeleton() {
       </div>
 
       {/* Row of skeleton cards — matches the real slider's spacing/width */}
-      <div className="flex gap-5 overflow-hidden px-6 xl:px-16 py-4">
+      <div className="flex gap-4 sm:gap-5 overflow-hidden px-6 xl:px-16 py-4">
         {Array.from({ length: 7 }).map((_, index) => (
-          <div key={index} className="shrink-0 w-[200px] md:w-[215px]">
+          <div
+            key={index}
+            className="shrink-0 w-[170px] sm:w-[200px] md:w-[215px]"
+          >
             <GameCardSkeleton />
           </div>
         ))}

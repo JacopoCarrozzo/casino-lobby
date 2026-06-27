@@ -40,9 +40,9 @@ export default async function GameDetailPage({ params }: Props) {
       <div className="mx-auto max-w-5xl px-6 py-10 xl:px-8">
         <Link
           href="/"
-          className="group mb-8 inline-flex items-center gap-3 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
+          className="group mb-8 inline-flex items-center gap-3 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-brand-gold"
         >
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface transition-all duration-200 group-hover:border-muted-foreground/40 group-active:scale-95">
+          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface text-muted-foreground transition-all duration-200 group-hover:border-brand-gold group-hover:text-brand-gold group-active:scale-95">
             <ArrowLeft className="h-5 w-5" />
           </span>
           Back to Lobby

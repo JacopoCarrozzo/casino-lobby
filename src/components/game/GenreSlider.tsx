@@ -34,14 +34,14 @@ export function GenreSlider({
       <div className="flex items-center justify-between px-6 xl:px-16">
         <h2 className="text-lg font-bold text-foreground">{genre}</h2>
         <div className="flex items-center gap-2">
-          <button className="h-9 rounded-full border border-surface-border bg-surface px-4 text-sm font-medium text-muted-foreground transition-all duration-200 hover:border-brand-gold/30 hover:text-foreground">
+          <button className="h-9 rounded-full border border-surface-border bg-surface px-4 text-sm font-medium text-muted-foreground cursor-pointer hover:border-brand-gold/30 hover:text-foreground">
             View all
           </button>
 
           <button
             onClick={() => scroll('left')}
             aria-label={`Scroll ${genre} left`}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-surface-border bg-surface text-muted-foreground transition-all duration-200 hover:border-brand-gold/30 hover:text-brand-gold active:scale-95"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-surface-border bg-surface text-muted-foreground cursor-pointer hover:border-brand-gold/30 hover:text-brand-gold active:scale-95"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -49,7 +49,7 @@ export function GenreSlider({
           <button
             onClick={() => scroll('right')}
             aria-label={`Scroll ${genre} right`}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-surface-border bg-surface text-muted-foreground transition-all duration-200 hover:border-brand-gold/30 hover:text-brand-gold active:scale-95"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-surface-border bg-surface text-muted-foreground cursor-pointer hover:border-brand-gold/30 hover:text-brand-gold active:scale-95"
           >
             <ChevronRight className="h-4 w-4" />
           </button>

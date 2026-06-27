@@ -7,7 +7,7 @@ export function HeroSection() {
         <div className="flex flex-col items-start text-left max-w-xl">
           <h1 className="text-3xl font-black uppercase tracking-tight text-foreground md:text-4xl lg:text-5xl leading-[1.05]">
             Welcome to the <br />
-            <span className="text-brand-gold drop-shadow-[0_0_12px_rgba(212,175,55,0.15)]">
+            <span className="text-brand-gold drop-shadow-[0_0_12px_rgba(245,158,11,0.15)]">
               Casino Lobby
             </span>
           </h1>
@@ -18,7 +18,7 @@ export function HeroSection() {
 
           <a
             href="#games"
-            className="mt-6 inline-flex h-10 items-center rounded-lg bg-brand-gold px-7 text-[13px] font-black uppercase tracking-wider text-accent-foreground shadow-[0_4px_15px_rgba(212,175,55,0.2)] transition-all duration-300 hover:brightness-110 active:scale-95"
+            className="mt-6 inline-flex h-10 items-center rounded-lg bg-brand-gold px-7 text-[13px] font-black uppercase tracking-wider text-accent-foreground shadow-[0_4px_15px_rgba(245,158,11,0.2)] hover:brightness-110 active:scale-95"
           >
             Play Now
           </a>
@@ -32,7 +32,7 @@ export function HeroSection() {
               fill
               priority
               sizes="(max-width: 768px) 100vw, 80vw"
-              className="object-contain object-right md:object-center transition-transform duration-700 hover:scale-[1.02]"
+              className="object-contain object-right md:object-center hover:scale-[1.02]"
             />
           </div>
         </div>

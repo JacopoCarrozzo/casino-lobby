@@ -19,7 +19,8 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="relative flex h-11 w-20 cursor-pointer items-center rounded-full border border-surface-border bg-surface/40 shadow-sm shadow-black/5 transition-all duration-300 hover:border-brand-gold/30 hover:bg-surface hover:scale-105 active:scale-95"
+      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+      className="relative flex h-11 w-20 cursor-pointer items-center rounded-full border border-surface-border bg-surface/40 shadow-sm shadow-black/5 hover:border-brand-gold/30 hover:bg-surface hover:scale-105 active:scale-95"
     >
       <div
         className={`absolute left-1.5 flex h-7 w-7 items-center justify-center rounded-full transition-transform duration-300 ease-in-out ${
