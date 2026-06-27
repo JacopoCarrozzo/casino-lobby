@@ -8,7 +8,12 @@ import { MobileDrawer } from '@/components/layout/MobileDrawer'
 import { SearchOverlay } from '@/components/layout/SearchOverlay'
 import Link from 'next/link'
 
-const navLinks = ['Home', 'All Games', 'Promotions', 'VIP Club']
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'All Games', href: '/coming-soon' },
+  { label: 'Promotions', href: '/coming-soon' },
+  { label: 'VIP Club', href: '/coming-soon' },
+]
 
 export function NavbarMobile() {
   const [isOpen, setIsOpen] = useState(false)
@@ -105,31 +110,36 @@ export function NavbarMobile() {
         </div>
 
         <nav className="flex flex-col p-2">
-          {navLinks.map((label, index) => (
-            <button
-              key={label}
-              onClick={() => setIsOpen(false)}
-              className={`rounded-lg px-4 py-3 text-left text-[15px] font-medium transition-colors ${
-                index === 0
-                  ? 'font-bold text-brand-gold'
-                  : 'text-muted-foreground hover:bg-background hover:text-foreground'
-              }`}
-            >
-              {label}
-            </button>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = link.href === '/' && isHome
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                aria-current={isActive ? 'page' : undefined}
+                className={`rounded-lg px-4 py-3 text-left text-[15px] font-medium transition-colors ${
+                  isActive
+                    ? 'font-bold text-brand-gold'
+                    : 'text-muted-foreground hover:bg-background hover:text-foreground'
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
         </nav>
 
         <div className="flex-1" />
 
         <div className="flex items-center justify-between border-t border-surface-border p-4">
-          <button
+          <Link
+            href="/coming-soon"
             aria-label="Account"
             className="flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-brand-gold"
           >
             <User className="h-5 w-5" />
             <span>Account</span>
-          </button>
+          </Link>
 
           <ThemeToggle />
         </div>

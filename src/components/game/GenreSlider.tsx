@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { GameCard } from '@/components/game/GameCard'
 import type { Game } from '@/types'
+import Link from 'next/link'
 
 interface GenreSliderProps {
   genre: string
@@ -34,9 +35,12 @@ export function GenreSlider({
       <div className="flex items-center justify-between px-6 xl:px-16">
         <h2 className="text-lg font-bold text-foreground">{genre}</h2>
         <div className="flex items-center gap-2">
-          <button className="h-9 rounded-full border border-surface-border bg-surface px-4 text-sm font-medium text-muted-foreground cursor-pointer hover:border-brand-gold/30 hover:text-foreground">
+          <Link
+            href="/coming-soon"
+            className=" inline-flex items-center h-9 rounded-full border border-surface-border bg-surface px-4 text-sm font-medium text-muted-foreground cursor-pointer hover:border-brand-gold/30 hover:text-foreground"
+          >
             View all
-          </button>
+          </Link>
 
           <button
             onClick={() => scroll('left')}

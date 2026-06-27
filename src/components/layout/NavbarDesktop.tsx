@@ -11,10 +11,10 @@ export function NavbarDesktop() {
   const isHome = pathname === '/'
 
   const navLinks = [
-    { label: 'Home' },
-    { label: 'All Games' },
-    { label: 'Promotions' },
-    { label: 'VIP Club' },
+    { label: 'Home', href: '/' },
+    { label: 'All Games', href: '/coming-soon' },
+    { label: 'Promotions', href: '/coming-soon' },
+    { label: 'VIP Club', href: '/coming-soon' },
   ]
 
   return (
@@ -54,11 +54,13 @@ export function NavbarDesktop() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-12 ml-4">
-          {navLinks.map((link, index) => {
-            const isActive = index === 0
+          {navLinks.map((link) => {
+            const isActive = link.href === '/' && isHome
             return (
-              <div
+              <Link
                 key={link.label}
+                href={link.href}
+                aria-current={isActive ? 'page' : undefined}
                 className="text-[15px] font-medium tracking-wide relative py-2.5 group/link cursor-pointer"
               >
                 <span
@@ -77,7 +79,7 @@ export function NavbarDesktop() {
                       : 'w-0 opacity-0 group-hover/link:w-2/3 group-hover/link:opacity-40'
                   }`}
                 />
-              </div>
+              </Link>
             )
           })}
         </nav>
@@ -116,7 +118,8 @@ export function NavbarDesktop() {
           <div className="flex items-center gap-5 border-l border-surface-border pl-6 h-9 shrink-0">
             <ThemeToggle />
 
-            <button
+            <Link
+              href="/coming-soon"
               aria-label="Account"
               className="flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface/40 text-muted-foreground hover:text-brand-gold hover:border-brand-gold/30 hover:bg-surface hover:scale-105 active:scale-95 shadow-md shadow-black/5 cursor-pointer"
             >
@@ -136,7 +139,7 @@ export function NavbarDesktop() {
                   d="M12 13.5c-4.418 0-8 2.686-8 6v1c0 .552.448 1 1 1h14c.552 0 1-.448 1-1v-1c0-3.314-3.582-6-8-6z"
                 />
               </svg>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

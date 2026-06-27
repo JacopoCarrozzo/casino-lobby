@@ -39,7 +39,7 @@ export function Footer() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   aria-hidden="true"
-                  className="h-5 w-5"
+                  className="h-5 w-5 transition-transform duration-700 ease-out group-hover:rotate-[360deg]"
                 >
                   <path d="M6 3h12l4 6-10 12L2 9z" />
                   <path d="M11 3L8 9l4 12 4-12-3-6" />
@@ -75,7 +75,7 @@ export function Footer() {
                   {column.links.map((label) => (
                     <li key={label}>
                       <Link
-                        href="#"
+                        href="/coming-soon"
                         className="text-sm text-muted-foreground hover:text-brand-gold"
                       >
                         {label}
@@ -95,19 +95,19 @@ export function Footer() {
 
           <div className="flex items-center gap-5">
             <Link
-              href="#"
+              href="/coming-soon"
               className="text-xs text-muted-foreground/70 hover:text-brand-gold"
             >
               Terms
             </Link>
             <Link
-              href="#"
+              href="/coming-soon"
               className="text-xs text-muted-foreground/70 hover:text-brand-gold"
             >
               Privacy
             </Link>
             <Link
-              href="#"
+              href="/coming-soon"
               className="text-xs text-muted-foreground/70 hover:text-brand-gold"
             >
               Cookies
