@@ -16,7 +16,7 @@ export default async function Home() {
   return (
     <main>
       <HeroSection />
-      <section id="games">
+      <section id="games" className="scroll-mt-16 lg:scroll-mt-20">
         <GameLobby initialGames={games} initialError={error} />
       </section>
     </main>
